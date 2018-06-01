@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- This file contains job definitions in schema version 2.0 format -->
+
+<job-scheduling-data xmlns="http://quartznet.sourceforge.net/JobSchedulingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
+
+  <processing-directives>
+    <overwrite-existing-data>true</overwrite-existing-data>
+  </processing-directives>
+
+  <schedule>
+
+    <!--TestJob测试 任务配置-->
+    <job>
+      <name>BillInformJob</name>
+      <group>BillInform</group>
+      <description>微信账单测试</description>
+      <job-type>WeChatJob.BillInform,WeChatJob</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>BillInformTrigger</name>
+        <group>BillInform</group>
+        <job-name>BillInformJob</job-name>
+        <job-group>BillInform</job-group>
+        <cron-expression>0 0 12 * * ?</cron-expression>
+      </cron>
+    </trigger>
+
+  </schedule>
+</job-scheduling-data>
